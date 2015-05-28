@@ -1,0 +1,449 @@
+version: 1.2.3
+© 2013 by Leslie Young
+http://www.plyoung.com/unirpg/
+
+===============================================================
+
+Version 1.2.3
+
+- Fixed a bug where the a character would snap to the highest floor when walking in underneath a floor
+- Fixed bug in Character 2 Animation action - when forcing idle
+- Fixed problem with keyboard movement acting strange after player character die and re-spawned
+- Fixed problem with NPCs getting stuck when moving up slopes
+- Can now set click distance for player input in player character's inspector
+- Added Fade-In/Out command to Default GUI Theme to face screen to black and back. See 'Message to GUI' Action
+- Added feature where NPC will chase after player when hit, even if player outside detection radius. Attribute under On GetHit must be set for NPC.
+- Added a Chase Timeout which NPC will use to give up on chasing player if it did not get to hit in that time. This only works while the Player is outside the detection radius as the NPC will always chase a player within its detection radius.
+
+Version 1.2.2
+
+- Fixed an error in the NPC script (just some messy code that should not be there)
+- Fixed problem with player being able to interrupt its own skills even when set to not be able to do so
+- Fixed problem with character stopping too late after key release when using keyboard input
+- Fixed an error that might prevent scene loading from happening
+- Fixed bug where the NPC would get stuck in its "hit" animation and won't switch over to movement animation properly
+
+Version 1.2.1
+
+- Fixed bug that happens when unequip an item. This bug was introduced with 1.2.0
+- Fixed possible bug where player can run up the detection volume of the NPC if the "floor layer" is set as "Default". NPCs and Player characters must still be set to their own layers in this case and must not be on the same layer as the floor.
+- Added an option (Collision Layer) to Aron and Simple Move. This should be set to everything except when you want to allow the character to move through something. That something, like an NPC, could be placed on a layer that is then unselected in this field.
+- Some more tweaking of keyboard movement
+
+Version 1.2.0
+
+- Added feature to show equipped items visually
+- Removed all scripts related to the old Character system.
+	-- Have look at the notes if you are updating. 
+	-- For a fresh install you do not have to do anything in this regard.
+- Improved the Simple Move and Pro movement somewhat when using keyboard input to move
+
+Version 1.1.9
+
+- Added a dummy "Targeted" object for AOE Around Area type Skill
+- Improved the Simple Move collision detection
+- Fixed problem with actor moving closer to a targeted object, when using a skill, even if skill targets set as "Self"
+- Changed the Action Slot shortcut keys to be on lower priority than targeting key
+
+Version 1.1.8
+
+- Reversed the changes to an Item's Pickup Event (which was made in 1.1.7). The Event wil f ire ONLY when the player picked up an item from the world
+- Added the On AddedToBagg and On RemovedFromBag events for Item
+- Added gravity value to Simple and Aron move controllers
+- Fixed problem with On Equip not being called on scene change (for NPC created via spawn point)
+- Fixed error that occur if NPC have only 1 skill slot
+- Fixed error messages from Pro movement when changing scenes
+
+Version 1.1.7
+
+- NPC can now choose to use a Skill on Slot-2 too. This will normally be a ranged skill
+- Changed the Item's pick-up event to trigger when it is placed in a bag. This way it will also execute when the player receive an item from a shop or other source and not only when picking up an item
+- Added a "click-marker prefab" to player. This can be an object that indicates where the player click-to-move
+- Fixed bug that would cause the player animation to freeze in some situations
+- Fixed error message that occur when NPC, which was using Pro movement, is killed http://plyoung.com/unirpg/forum/viewtopic.php?f=15&t=369
+
+Version 1.1.6
+
+- AWSD movement is back. Best to use it with Simple Move only
+- Added ability to persist Items that are placed/ created in the scene during runtime
+- Added option to Object Create Action to set Item as persistent
+- Removed the old DefaultCharacter system from UniRPG. Please use the Character-2 system
+- Changed Debug Action to also run during Loading/ Restore so it can be used when debugging event(s) related to this
+- Fixed problem with Aron Navigation where it would not allow the character to move through colliders set as triggers
+- Fixed problem with Aron NAvigation where character might float or go under terrain
+
+Version 1.1.5
+
+- Fixed bug with Attribute Bonus not being saved and restored properly
+- Fixed bug with Global Number and Object variable scrollbars moving together
+- Fixed bug with NPC 'forgetting' what skills it has when scene changed
+- Fixed bug with DiaQ Condition Update Node not showing an output link
+- Fixed bug with shortcut keys not being able to close UI panels (Default GUI Theme)
+- Fixed, added further checks to make sure a queued skill will not try to perform on a target that became invalid while waiting to perform skill
+- Fixed, refined the character movement further. It should act overall better on slopes
+
+Version 1.1.4
+
+- Updated Attributes with a way to add Bonus value. This is added to the final Value of an Attribute and normally used when you want to increase an attribute's value in some way other than than leveling - for example, a magic sword adding Strength should add it to Bonus in the Attribute Action
+- Updated Character 2: Animation Action with an option to turn antics on/off
+- Fixed bug with action shortcut key not resulting in queuing of skill. Must have 'double' selected for the action shortcut in input settings
+- Fixed bug where NPC would first finish movement to its last target location before going after the player if it went hostile while moving
+- Fixed error that would come up in character selection (of Default Theme) when player character uses Pro navigation & movement
+
+Version 1.1.3
+
+- Added the "Placeable" object type. Useful for skills where you might want to plant a trap or bomb for the NPCs
+- Updated Spawn/Create Action to take parent's orientation into account for offset, when parent object is set
+- Updated Move Action to take target's orientation into account for offset. Also added ability to turn self into a direction relative to target
+- Updated Chara2: Animation - change idle to force the new idle clip when "go idle now" is selected
+- Updated animation clip lister with scrollbars
+- Fixed bug with graphics quality slider in Default GUI Theme
+- Fixed bug where NPC would not detect a player already within its detection radius when it goes to Hostile
+- Fixed problem with Skills not firring when valid targets set to 'nothing'
+- Fixed rotation error message that would sometimes come up in Simple move
+
+Version 1.1.2
+
+- Changed Spawn Point to not disable the whole GameObject when no Character to spawn is specified. This will allow the use of the Spawn Point as reference when used as parent in Object Create Actions.
+- Changed the Death Event to Stop any skill being executed. It is still up to Actions to totally Disable the Character if that behavior is intended, else an NPC could for example start attacking again while it is dying.
+- Added option to Move Action to indicate of object should look in move direction or not
+- Fixed bug in Attribute Action where custom variables could not be read from non-Actors.
+- Fixed bug where RPGItem would sometimes not spawn as loot drop
+- Fixed bug where a Spawned object might not spawn again
+- Fixed bug with Equip prevent State not working as expected
+
+Version 1.1.1
+
+- Added support for Idle Antics to the Animation controllers
+- Updated Player controller to behave better when chasing an NPC. Before it would run to a last know position of the NPC before trying to find out where the NPC might be now (if NPC is moving around)
+- Fixed auto-pickup of items and loot
+- Fixed bug where selection markers would not show up under new Character-2 system
+- Fixed bug preventing Character-2 system's Loading/ Saving from running
+- Fixed bug where skills on auto-repeat can execute even if the target becomes invalid
+
+Version 1.1.0
+
+- Added the New Character-2 System to replace the old DefaultCharacter System - This is a much improved system for 
+	handling the Input, Animation, Navigation/ Movement and Actions related to the Player and Non-Player Characters
+- Updated Collidable to face direction it is moving
+- Updated Collidable Create Actions to calculate offset according to subject's forward face
+
+Version 1.0.8
+
+- Added calls that can be made via System/Message to GUI (custom) to hide/ show "menu" bar, "status" panels, and action "slots"
+- Added Execution:Random Action
+- Added way to group Loot reward. Only one reward per group will be selected randomly
+- Fixed error when skill valid target is set to "Nothing"
+- Fixed skill not executing when target set to Self
+
+Version 1.0.7
+
+- Added option to create custom Input Definitions which can execute Events
+- Added a Util script that can help you find objects with missing scripts/ components, in all prefabs and scenes objects. Under menu: UniRPG -> Misc
+- Updated DefaultChar Animation Action to allow toggling of Walk/Run
+- Fixed Action's move and delete buttons, in lists, might be moved out of view
+- Fixed Collidable Action (prefab field was not showing)
+- Fixed Default Character mecanim trying to play antics when there are none to play
+- Fixed AWSD movement not playing mecanim animation
+- Fixed popups in Default GUI to not move out of the GUI's design width and height
+- Fixed Default Player moving too far and not looking at target when attacking
+- Fixed crash bug that occur when loading Actor try to load state of its owned Item (load saved game)
+- Fixed problem with selecting the lowest resolution in graphics settings
+
+Version 1.0.6
+
+- Added support for Mecanim to the Default Player and Non-Player Character types
+- Added Action which can set Mecanim parameters
+- Fixed bug where Default GUI might not show quest rewards in conversation
+- Fixed bug in DiaQ Editor where copy-paste would not function on some input fields
+
+Version 1.0.5
+
+- Changed how Input Binder works. It now supports single press, double press and held key/ button
+- Make sure your input settings are correct after this update
+- Added new Collidable Create Action which provide additional properties when creating Collidable
+- Updated the Collidable with and option to not have to collide with something to trigger events
+- Updated Default Camera to prevent jerkiness in certain occasions
+- Updated Default NPC and SpawnPoint wander areas with option for rectangular in addition to circular
+- Fixed problem where Default GUI was showing Attribute values as float and not int
+- Fixed bug that could cause crashes when opening UnIRPG editor window under OSX
+- Fixed possible error when DiaQ resource file is not present
+
+Version 1.0.4
+
+- Fixed error messages thrown when viewing NPC basic info
+- DiaQ - Added new QuestCheck Node which makes it easier to branch according to quest's status
+- DiaQ - Updated Decision Node to allow testing if Quest was handed in
+
+Version 1.0.1
+
+- UniRPG now do not require camera definitions but then you need to supply the main camera in the scene
+- Fixed bug where selection markers would not update when targeted NPC changes its type betwene friendly, neutral, hostile
+- Fixed bug where selection markers would not disapear when item is picked up
+- Fixed bug with player being able to move via click-to-move while Character is disabled
+- Fixed bug where Hostile NPC would not detect the player if he does not move when NPC comes close
+
+Version 1.0.0
+
+- Added support to Default Character to use Unity Pro Pathfinding 
+http://docs.unity3d.com/Documentation/Manual/NavmeshandPathfinding.html
+- Added support to Default Character to use A* Pathfinding Project 
+http://arongranberg.com/astar/
+- Fixed bug with selection ring/marker not following the target
+
+Version 0.9.0 (BETA)
+
+- Added Graphics options/settings to Default GUI Theme
+- Added support for selection ring/markers to Default Player type
+- Fixed problem with actions list scrollbar snapping back to top
+- It is now possible to change the words "Sell" and "Buy" of the Default GUI Theme shop via custom variable modifiers
+- DiaQ - Added new a Node that can make calls to a UniRPG Events
+- DiaQ - Updated Actions to be compatible with UniRPG 0.8+
+
+Version 0.8.0 (BETA)
+
+- New CollidableObject type which can be used to for example creating projectiles like fireballs
+- Updated Skills to provide a way to create AOE type Skills. Have a look at the updated Skills docs to learn more.
+- Added more sources for setting the value of a custom/private variable
+- Added even more sources for setting the value of a global variable
+- Changed Attribute Action to allow non-Actor as source of custom variable for Aggressor
+
+Version 0.7.6 (BETA)
+
+- Added more sources from which Global Variables can be set
+- Added Numeric Gobal Variable as source for setting Custom Variables
+- Added options to Default GUI Theme to allow settings when player can move or not when panels are open
+- Added option to change the Default Character Type turn speed
+- Fixed bug where skills do not move when placed in another action slot
+
+Version 0.7.5 (BETA)
+
+- Greatly Improved Attribute Action
+- Updated DefaultChar: Change Animation Action
+- Fixed incorrect use of offset in Move Action
+- Fixed problem with NPC not detecting player if he is allready in detection radius when NPC turns hostile
+- Added a way for plugins to register classes to be auto called after game loaded or player went from menu to game-scene
+- DiaQ - Loading and Saving of DiaQ state data is now possible
+- DiaQ - Added an UpdateCondition Node
+
+Version 0.7.4 (BETA)
+
+- DiaQ - Fixed bug with Decision Node calculating wrong result when testing variables
+- DiaQ - Added Action to Set/Create DiaQ variables
+- Updated Default GUI Status panels with more options
+- Updated Debug Action to be capable of also showing global object var value
+- Updated Create/Spawn Action to allow setting that it auto-destroy after timeout
+- Updated Move Action with option to set movement to happen over set time
+- Changed Default GUI Status panels to not show bar for attribute that character does not have
+- Changed Global Variable Action to allow for more sources for the value
+- Changed Default GUI such that player can't move when any panel open
+
+Version 0.7.3 (BETA)
+
+- Game options (sound volume) is now properly saved and restored
+- More options to rename labels used in Default GUI Theme
+- Added double-tap auto-queuing of skill
+- DiaQ - Fixed error with the properties view expanding incorrectly under OSX
+- DiaQ - Fixed a problem with toolbar icon not loading
+- DiaQ - Sample package included in UniRPG
+
+Version 0.7.2 (BETA)
+
+- DiaQ: Fixed a bug with runtime changes being kept while testing play
+- DiaQ: Added a RandomPath Node
+
+Version 0.7.1 (BETA)
+
+- Fixed bug that would occur when importing UniRPG into new project
+
+Version 0.7.0 (BETA)
+
+- Added DiaQ, the Unity Dialogue and Quest Engine
+- Added way for plugins to insert new buttons into UniRPG Toolbar
+- Renamed editor Resources folder to "Res"
+
+Version 0.6.0 (BETA)
+
+- This opdate makes changes to the IfThen Action. Please check that your IfThen Actions are still valid and update them as needed
+- Updated IfThen Action to support Custom/Private Variables
+- Updated object Create/Spawn Action to allow saving a reference of the created object to a global object variable
+- Added option to set menu music for Default GUI Theme
+- Added options to set menu sounds for Default GUI Theme
+- Added Action to Start new sound/music, and play/stop existing sound
+- Added Action which allow changing the idle, walk and run animation of a default character type
+- Added ability to set menu option names for Default GUI Theme
+- Added options to default gui theme where player can set sound volume
+- Fixed Custom Var Action to allow setting the Subject
+- Fixed bug where Trigger's OnLoad Event would not execute
+- Fixed bug where player position was not saved correctly when exiting to main menu
+- Fixed bug with trigger being audo-disabled when it should not
+
+Version 0.5.2 (BETA)
+
+- Added option to set Default Player to not use click-to-move, via Primary Input used for movement
+- Added Idle-Antics option to Default Player and NPC
+- Updated Animation Action to allow random clip selection
+- Fixed bug with GUI Hotkeys not working
+- Fixed bug in Default GUI Theme when showing Item description
+
+Version 0.5.2 (BETA)
+
+- Fix small problem in Default GUI Theme
+
+Version 0.5.0 (BETA)
+
+- New option to set the detection radius for an NPC. Designer no longer need to create sphere trigger for Hostile NPCs
+- Made some changes around how the Default Player controller works. The game mechanics should feel much better now.
+- Can set shop to have unlimited supply via custom var shop_unlimited=1
+- Show description of skill when hovering over it
+- Removed the concept of Primary and Secondary skills/slots
+- Updated Actor inspector to allow adding of Starting Skills and not just equipped skills
+- Ability to place Items onto Action Slots
+- Levels can now affect Attribute Base and Max Values
+- Added Loot Tables and Action related to creating loot drops
+
+Version 0.4.0 (BETA)
+
+- Fixed Triggers to trigger correctly depending on what enters it
+- Fixed, Actions should be able to indicate if they want to be fired during OnEquip while the LoadSave System is restoring a character
+- Updated Default GUI Theme. Lots more customisation options available
+- Added new Quest Provider which plugin devs will use to provide quest info
+- Updated GUI Message Action to open Shop Interface
+- Added Quest Log Panel to Default GUI Theme
+- Added Shop Interface to Default GUI Theme
+
+Version 0.3.5 (BETA)
+
+- Fixed bug with Camera definitions not always saving properly
+- Fixed bug with OnDeath & OnGetHit events not being hooked properly
+- Fixed bug with Attribute, set to regen, sometimes stopping before reaching the max value
+- Fixed, prevent player from selecting self with a mouse click
+- Equip Events are now always fired for Player/NPC when character is instantiated and contains items or when LoadSave System places items onto the character
+- Plugin developers take note. UniRPGEditor namespace introduced.
+- Active camera is tagged as MainCamera so that Camera.main is valid
+- More Advanced sections of the documentation completed
+- More code comments added
+
+Version 0.3.4 (BETA)
+
+- More variables are now being saved and restored by the LoadSave System (for example run speed of default character types)
+- Removed DefaultNPC: AI EnDisable Action
+- Added general purpose Character EnDisable Action which can be used on both NPC and Player Characters
+- Default Character type's target and target position cleared when disabled/ enabled.
+- Fixed bug with saving of Player ActorClass type
+- PartolPaths now also have access to private/custom vars
+- Improved the Rectangular and Circular Trigger types
+- Action Developers, please have a look at how Actions where changed to hook into the LoadSave System
+- Restoring Items on Equip Slots will now also trigger the OnEquip Event
+- Added new Events to Characters. OnGetHit and OnDeath
+
+Version 0.3.3 (BETA)
+
+- Fixed a bug with Player character not being notified when being (un)targeted by non-player character
+- Fixed bug with Equiped Items not being saved
+- Fixed bug with Skill Slots not udpating when changing a Skill's slot
+- Fixed Global Variables so that they reset to what they where at design time when exiting the game to the menu
+- Few small changes to wording in Action Editors to make their use clearer
+- Updated documentation to cover all additions up to version 0.3.3
+- Added new Tutorials http://plyoung.com/unirpg/docs/tutorials.html
+
+Version 0.3.2 (BETA)
+
+- LoadSave now also save/restore bag slot size
+- LoadSave system now correctly restores chosen player character, class and name
+- Fixed bug with Skill's execution of certain Actions
+
+Version 0.3.1 (BETA)
+
+- Fixed bug with cache system not keeping proper track of Actors
+- Fixed bug with target object set as canBeTargeted=false staying targeted by player
+- Added DefaultNPC Disable Action which can turn off NPC AI
+- Added DefaultNPC ActorType Change Action
+- Changed SpawnPoint to not be hardcoded to DefaultNPC
+- Changed MoveObject Action to also accept SpawnPoint as target location
+- Changed Scene Load Action to allow specifying a SpawnPoint ident
+- Added more debug logging to new LoadSave system so that bugs are easier to spot
+- Added Action to Set Global vars
+- Changed how the Database is loaded during runtime
+- Added Custom Variable support to Character, Trigger, SpawnPoint, RPGItem and RPGObject
+- Added Action to manipulate Custom variables
+
+Version 0.3.0 (BETA)
+
+- Added the Save and Load System
+- Added Default SaveLoad Provider (uses Unity PlayerPrefs)
+- Added Action to Set Currency
+- Fixed bug with camera definitions not saving properly
+- Changed how unique IDs are generated for states, skills, items, etc.
+- Use-from-bag now works for items/ consumables
+- Updates to Default GUI Theme
+  * Support the new LoadSave System
+  * Close button in top corner for windows
+  
+Version 0.2.2 (WIP - Alpha)
+
+- Fixed bug with wandeering NPC spinning
+- Fixed bug with name caching of Attributes and ActorClasses
+- Added Quest related updates to Default GUI Theme Dialogue panel
+- Updates to GUI Themes System to allow specifying rewards for QUest Dialogues
+
+Version 0.2.1 (WIP - Alpha)
+
+- Various small bug fixes
+- New Action to stop and exit action queue
+- New IfThen Action to decide what action in queue to call next
+- Fixed bug with InputManager
+- Changed Object Create Action to also work with Global Variables
+- Trigger Events improved
+- PLYProto removed from package. It available for free at https://www.assetstore.unity3d.com/#/content/10275
+
+Version 0.2.0 (WIP - Alpha)
+
+- New Triggers system
+- Toolbar can now also be positioned horizontally
+- New copy button for skills, styles, etc
+- Optimized how cameras are saved in the DB
+- Can move Game Scenes up and down in list
+- Attribute Action now allows manipulation of min and max too
+- Send Message Action can now send to all objects with specific tag
+- Animation Action now has a dropdown to select a clip if target is "Self"
+- New Camera Activate Action
+- Player and NPC controllers can now be replaced via plugins
+- Can set starting States on Actors
+- Can now also init default AI in the NPC Inspector
+
+Version 0.1.4 (ALPHA)
+- Fixed non-critical error that occurs when importing UniRPG updates
+- Fixed bug with Cache system causing stack overflow
+- Fixed errors which occur when building the game
+
+Version 0.1.3 (ALPHA)
+- Fixed bug that occur when importing UniRPG update into existing project
+- Fixed bug that occur when loading a scene on Unity Free
+- Fixed bug with player character and class selection
+- Improved States System
+- New Cameras system that supports camera plugins
+
+Version 0.1.2 (ALPHA)
+- Added Dialogue Panel to Default Fantasy GUI Theme to provide support for showing Dialogue with an NPC
+- Added GUI Action - allow sending messages to the Game GUI
+- New Cache system to speed editor up
+- New area in UniRPG's Main Editor window, under Actors, to see cached actors and option to refresh the cache
+- New toolbar button to quickly refresh the Actor and Item cache
+- Fixed small bug with String Value global variables
+- A Unity-Object-Type global variable support was added. This will allow you to write/read GameObjects, Components and other Unity types in the global variable system
+- Actions have been updated to support the Object-type global variable via the "Specified" target type.
+- You no longer provide default values when defining an Attribute. This will help with some of the confusion around Attributes and their use in Actor Classes. The Attribute's values and events can now only be configured through the Actor Class area.
+- New area in Main Editor for Events. You no longer choose a skill to play for Attribute value changes but make use of an Event. This will prevent some confusion around how this system works.
+- Added the Object Enable/ Disable Action which allows you to enable/disable a whole object or specific behaviour/component of that object
+
+Version 0.1.1 (ALPHA)
+- Added the Leveling System
+- The Attribute Action is now complete
+- New target type for Actions, the Player
+- Fixed bug with opening Documentation on OSX
+
+Version 0.1.0 (ALPHA)
+- First release version for early adopters
+
+-eof-

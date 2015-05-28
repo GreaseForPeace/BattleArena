@@ -1,0 +1,60 @@
+version: 1.5.6
+© 2013 by Leslie Young
+http://www.plyoung.com/docs/diaq.html
+
+===============================================================
+
+Verison 1.5.6
+
+- Fixed bug with DiaQ Condition Update Node not showing an output link
+
+Version 1.5.5
+
+- Fixed bug in DiaQ Editor where copy-paste would not function on some input fields
+
+Version 1.5.4
+
+- Fixed bug where linked quest would not be send if option to include text was not set
+
+Version 1.5.3
+
+- Fixed possible error when DiaQ resource file is not present
+
+Version 1.5.2
+
+- Added new QuestCheck Node which makes it easier to branch according to quest's status
+
+Version 1.5.1
+
+- Updated Decision Node to allow testing if Quest was handed in
+
+Version 1.5
+
+- Added new a Node that can make calls to a UniRPG Events
+- Updated Actions to be compatible with UniRPG 0.8+
+
+Version 1.4
+
+- Loading and Saving of DiaQ state data is now possible
+- Added an UpdateCondition Node
+
+Version 1.3
+
+- Fixed bug with Decision Node calculating wrong result when testing variables
+- Added UniRG Action to Set/Create DiaQ variables
+
+Version 1.2
+
+- Fixed error with the properties view expanding incorrectly under OSX
+
+Version 1.1
+
+- Fixed a bug with runtime changes being kept while testing play
+- Added a RandomPath Node
+
+Version 1.0
+
+- First release version
+
+
+-eof-
