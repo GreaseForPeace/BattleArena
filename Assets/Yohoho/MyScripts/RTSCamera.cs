@@ -19,7 +19,7 @@ public class RTSCamera : MonoBehaviour
 
     void Start()
     {
-        transform.position = new Vector3(target.position.x, transform.position.y, target.position.z);
+        transform.position = new Vector3(target.position.x, transform.position.y, target.position.z - 5);
     }
     void Update()
     {
@@ -54,7 +54,7 @@ public class RTSCamera : MonoBehaviour
         // Set camera to player
         if (Input.GetKeyDown("f1"))
         {
-            transform.position = new Vector3(target.position.x, transform.position.y, target.position.z);
+            transform.position = new Vector3(target.position.x, transform.position.y, target.position.z - 5);
         }
 
         //zoom camera
