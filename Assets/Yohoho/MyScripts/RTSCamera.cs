@@ -6,6 +6,7 @@ public class RTSCamera : MonoBehaviour
 {
 
     public float CamSpeed = 1;
+    public int CamZoomSpeed = 10;
     public int GUISize = 25;
     public Transform target;
 
@@ -58,8 +59,24 @@ public class RTSCamera : MonoBehaviour
         }
 
         //zoom camera
-        distance -= Input.GetAxis("Mouse ScrollWheel")*senetivytiDistance;
-        distance = Mathf.Clamp(distance, minFOV, maxFOV);
-        camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, distance, Time.deltaTime*dumping);
+        //distance -= Input.GetAxis("Mouse ScrollWheel")*senetivytiDistance;
+       // distance = Mathf.Clamp(distance, minFOV, maxFOV);
+      //  camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, distance, Time.deltaTime*dumping);
+
+        //Пока пусть будет так
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            transform.Translate(Vector3.forward * CamZoomSpeed * Time.deltaTime*dumping);
+         }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+             transform.Translate(Vector3.back * CamZoomSpeed * Time.deltaTime*dumping);
+         }
+         if (Input.GetKey(KeyCode.Q)){
+             transform.Rotate(Vector3.forward * CamZoomSpeed * Time.deltaTime*dumping);
+         }
+         if (Input.GetKey(KeyCode.E)){
+             transform.Rotate(Vector3.forward * -CamZoomSpeed * Time.deltaTime*dumping);
+         }
+ }
     }
-}
