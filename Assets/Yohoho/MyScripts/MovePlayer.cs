@@ -41,6 +41,20 @@ public class MovePlayer : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 10000.0f))
             {
                 target = hit.point;
+                if (hit.collider.GetComponent<PlayerClass>())
+                {
+                    var enemy = hit.collider.GetComponent<PlayerClass>();
+                    PlayerClass hero = GetComponent<PlayerClass>();
+                    if (enemy.Name != hero.Name)
+                    {
+                        Debug.Log("It's fucking working " + enemy.Name + " is not " + hero.Name);
+                    };
+                }
+                else
+                {
+                    var enemy = hit.collider.gameObject.name;
+                    Debug.Log("You clicked on " + enemy);
+                }
             }
         }
         LookAtThis();

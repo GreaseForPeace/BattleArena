@@ -21,13 +21,16 @@ public class PlayerClass : MonoBehaviour
     public bool IsMove;     //Show can moving player or not
     public bool IsStuned;   //Show stunned player or not
 
+    //String parametrs
+    public string Name;
+
     //Methods
-    public void AfterDie()                  //Calling after hero die
+    public static void AfterDie()                  //Calling after hero die
     {
         
     }
 
-    public void Attack(GameObject enemy)    //Calling when hero deal damage to enemy from hand
+    public static void Attack(GameObject enemy)    //Calling when hero deal damage to enemy from hand
     {
         
     }

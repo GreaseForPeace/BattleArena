@@ -11,4 +11,10 @@ public class Types : MonoBehaviour
         Jango
     }
 
+    public enum HeroesNames
+    {
+        Jora,
+        JoraTwo
+    }
+
 }

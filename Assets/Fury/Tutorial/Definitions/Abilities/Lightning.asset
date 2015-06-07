@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f54e379c2f2e0a489b9555af835844a, type: 1}
+  m_Name: Lightning
+  _Icon: {fileID: 2800000, guid: 583d64641b45d524498c4346351ff0ca, type: 1}
+  _Effect: {fileID: 100000, guid: 5f7960bee6dcdb74d8099505629d5299, type: 2}
+  _CastTime: 1
+  _CastMobile: 0
+  _CastRange: 5
+  _CastCooldown: 5
+  _RequiresTarget: 1
+  Damage: 100
+  EnergyCost: 75
+  EnergyType: {fileID: 11400000, guid: 00fa9a53d70eb7c42b1214c486b6591b, type: 2}
+  StatusEffect: {fileID: 11400000, guid: 760d8c2343e19ac42b8e5df151bb8cd7, type: 2}
