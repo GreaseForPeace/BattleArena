@@ -22,7 +22,7 @@ public class MovePlayer : MonoBehaviour
     public float a_IdleSpeed = 1;
     public AnimationClip a_Walk;
     public float a_WalkSpeed = 2;
-    public Camera camera;
+    //public Camera camera;
 
     private bool walk;
 
@@ -35,30 +35,33 @@ public class MovePlayer : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetKeyDown(KeyCode.Mouse1))                               //ПКМ
         {
-            ray = camera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, 10000.0f))
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);        //Цель обнаружена
+            if (Physics.Raycast(ray, out hit, 10000.0f))                    //ОГОНЬ!
             {
-                target = hit.point;
-                if (hit.collider.GetComponent<PlayerClass>())
+                target = hit.point;                                         //Цель обнаружена
+                if (hit.collider.GetComponent<PlayerClass>())               //Проверка цели
                 {
-                    var enemy = hit.collider.GetComponent<PlayerClass>();
-                    PlayerClass hero = GetComponent<PlayerClass>();
-                    if (enemy.Name != hero.Name)
+                    var enemy = hit.collider.GetComponent<PlayerClass>();   //Враг обнаружен
+                    var hero = GetComponent<PlayerClass>();
+                    if (enemy.TeamNumb != hero.TeamNumb)
                     {
-                        Debug.Log("It's fucking working " + enemy.Name + " is not " + hero.Name);
+                        Debug.Log("It's fucking enemy " + enemy.Name);
+                        hero.Attack(enemy);
+                        Debug.Log("Jora hp - " + hero.CurrHp);
+                        Debug.Log("JoraTwo hp - " + enemy.CurrHp);
                     };
                 }
-                else
+                else                                                        //Ложная тревога
                 {
                     var enemy = hit.collider.gameObject.name;
                     Debug.Log("You clicked on " + enemy);
                 }
             }
         }
-        LookAtThis();
-        MoveTo();
+        LookAtThis();                                                       //Смотри
+        MoveTo();                                                           //и беги
     }
 
     private void CalculateAngle(Vector3 temp)

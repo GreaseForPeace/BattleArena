@@ -14,6 +14,7 @@ public class PlayerClass : MonoBehaviour
     public int MagicResist; //Defence from magical damage;
     public int Damage;      //Hero damage from hand;
     public int MoveSpeed;   //Hero moving speed
+    public int TeamNumb;    //Number of player team
 
     //Boolean parameters
     public bool IsAlive;    //Show alive on died player
@@ -25,27 +26,30 @@ public class PlayerClass : MonoBehaviour
     public string Name;
 
     //Methods
-    public static void AfterDie()                  //Calling after hero die
+    public void Die()                  //Calling after hero die
     {
         
     }
 
-    public static void Attack(GameObject enemy)    //Calling when hero deal damage to enemy from hand
+    public void Attack(PlayerClass enemy)    //Calling when hero deal damage to enemy from hand
     {
-        
+        if (enemy.IsAlive)
+        {
+            DealDamage(Damage, Types.TypesOfDamage.One, enemy);
+        }
     }
 
-    public void Move()
+
+    public static void DealDamage(int damageValue, Types.TypesOfDamage damageType, PlayerClass enemy)
     {
-        
+        enemy.CurrHp -= damageValue;
     }
 
-    public void TakeDamage(int damageValue, Types.TypesOfDamage damageType)
+    void Start()
     {
-        
+        IsAlive = true;
     }
-
-    public void DealDaage(int damageValue, Types.TypesOfDamage damageType)
+    void Update()
     {
         
     }

@@ -30,7 +30,8 @@ public class GUIBar : MonoBehaviour
 		GUI.skin = MySkin;
 		
 		// Преобразования позиция из мирового пространства в пространство экрана.
-        Vector3 screenPosition = Camera.main.ScreenToWorldPoint(gameObject.transform.position);
+        Vector3 screenPosition = gameObject.transform.position;
+        
 		
 		//Находится ли объект перед камерой
      //   Vector3 cameraRelative = Camera.main.transform.InverseTransformPoint(transform.position);
