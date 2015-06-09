@@ -25,7 +25,7 @@ public class PlayerClass : MonoBehaviour
     //String parametrs
     public string Name;
 
-    //Methods
+       //Methods
     public void Die()                  //Calling after hero die
     {
         
@@ -44,13 +44,15 @@ public class PlayerClass : MonoBehaviour
     {
         enemy.CurrHp -= damageValue;
     }
-
+    
     void Start()
     {
         IsAlive = true;
     }
-    void Update()
+     
+        void Update()
     {
-        
+     
     }
+   
 }
