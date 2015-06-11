@@ -49,7 +49,7 @@ public class MovePlayer : MonoBehaviour
                     {
                         Debug.Log("It's fucking enemy " + enemy.Name);
                         hero.Attack(enemy);
-                        Debug.Log("Jora hp - " + hero.CurrHp);
+                        Debug.Log(hero.Name + " - " + hero.CurrHp);
                         Debug.Log("JoraTwo hp - " + enemy.CurrHp);
                     };
                 }

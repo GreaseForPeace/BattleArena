@@ -5,12 +5,12 @@ public class Die : MonoBehaviour {
 
     void OnEnable()
     {
-        EventManager.OnClicked += Dying;
+        EventManager.Died += Dying;
     }
 
     void OnDisable()
     {
-        EventManager.OnClicked -= Dying;
+        EventManager.Died -= Dying;
     }
 
     public void Dying()

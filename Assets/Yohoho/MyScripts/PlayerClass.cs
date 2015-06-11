@@ -25,10 +25,26 @@ public class PlayerClass : MonoBehaviour
     //String parametrs
     public string Name;
 
+    //PURGATORY!
+    Vector3 _purgatory = new Vector3(1000, 1000, 1000);
+
+    void OnEnable()
+    {
+   
+    }
+
+    void OnDisable()
+    {
+     
+    }
+
        //Methods
     public void Die()                  //Calling after hero die
     {
-        
+       var hero = GetComponent<PlayerClass>();
+       Debug.Log(hero.name + "DIED");
+       hero.IsAlive = false;
+       gameObject.transform.position = _purgatory;
     }
 
     public void Attack(PlayerClass enemy)    //Calling when hero deal damage to enemy from hand
@@ -36,6 +52,7 @@ public class PlayerClass : MonoBehaviour
         if (enemy.IsAlive)
         {
             DealDamage(Damage, Types.TypesOfDamage.One, enemy);
+            var enemyBar = enemy.GetComponent<Bar>().HBar2.value -= Damage;
         }
     }
 
@@ -51,8 +68,12 @@ public class PlayerClass : MonoBehaviour
     }
      
         void Update()
-    {
-     
-    }
+        {
+            var hero = GetComponent<PlayerClass>();
+            if (hero.CurrHp <= 0)
+            {
+                hero.Die();
+            }
+        }
    
 }

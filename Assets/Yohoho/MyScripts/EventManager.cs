@@ -5,17 +5,22 @@ public class EventManager : MonoBehaviour
 {
 
     public delegate void ClickAction();
-    public static event ClickAction OnClicked;
+    public static event ClickAction Died;
 
-    public delegate void BarChange();
-    public static event BarChange ChangeBar;
+  
+
+    void Update()
+    {
+
+    }
 
     void OnGUI()
     {
         if (GUI.Button(new Rect(Screen.width / 2 - 50, 20, 100, 30), "Die"))
         {
-            if (OnClicked != null)
-                OnClicked();
+            var hero = GetComponentInChildren<PlayerClass>();
+            hero.CurrHp -= 25;
+            Debug.Log("Hero - " + hero.Name + " HP - " + hero.CurrHp);
         }
     }
 }
