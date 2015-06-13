@@ -5,21 +5,19 @@ using System.Collections;
 
 public class Bar : MonoBehaviour {
   
-   // public Slider HBar;
     public Slider HBar2;
-  //  public Slider MBar;
+
 
     void Start()
     {
         var hero = GetComponent<PlayerClass>();
-      
-     //   HBar.value = hero.CurrHp;
-        HBar2.value = hero.CurrHp;
-        //MBar.value = hero.CurrMp;
-		}
+        HBar2.minValue = 0;
+        HBar2.maxValue = hero.MaxHp;
+    }
 	
 	// Update is called once per frame
 	void Update () {
-	
+        var hero = GetComponent<PlayerClass>();
+        HBar2.value = hero.CurrHp;
 	}
 }

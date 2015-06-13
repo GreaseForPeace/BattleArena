@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HeroesList : MonoBehaviour {
-
+public class HeroesList : MonoBehaviour
+{
 	// Use this for initialization
 	void Start () {
 	

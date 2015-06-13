@@ -26,11 +26,14 @@ public class PlayerClass : MonoBehaviour
     public string Name;
 
     //PURGATORY!
-    Vector3 _purgatory = new Vector3(1000, 1000, 1000);
+    public Vector3 _purgatory = new Vector3(1000, 1000, 1000);
+
+    //CABOOM
+    public GameObject CABOOM; 
 
     void OnEnable()
     {
-   
+        Debug.Log("PURGATORY HERE - " + _purgatory);
     }
 
     void OnDisable()
@@ -41,27 +44,38 @@ public class PlayerClass : MonoBehaviour
        //Methods
     public void Die()                  //Calling after hero die
     {
-       var hero = GetComponent<PlayerClass>();
-       Debug.Log(hero.name + "DIED");
-       hero.IsAlive = false;
-       gameObject.transform.position = _purgatory;
+       var hero = GetComponent<PlayerClass>();     //Big dady found you
+       Debug.Log(hero.name + " DIED");             //You died lol
+       hero.IsAlive = false;                       //Yeap, you rly died
+       Instantiate(CABOOM, gameObject.transform.position, gameObject.transform.rotation);
+       gameObject.transform.position = _purgatory; //GO TO PURGATORY, NIGGER!
+       
     }
 
     public void Attack(PlayerClass enemy)    //Calling when hero deal damage to enemy from hand
     {
-        if (enemy.IsAlive)
+        if (enemy.IsAlive && IsAlive)
         {
             DealDamage(Damage, Types.TypesOfDamage.One, enemy);
-            var enemyBar = enemy.GetComponent<Bar>().HBar2.value -= Damage;
         }
     }
 
 
-    public static void DealDamage(int damageValue, Types.TypesOfDamage damageType, PlayerClass enemy)
+    public void DealDamage(int damageValue, Types.TypesOfDamage damageType, PlayerClass enemy)
     {
         enemy.CurrHp -= damageValue;
     }
-    
+
+    public void Spawn(Vector3 pos)
+    {
+        if (!IsAlive)
+        {
+            gameObject.transform.position = pos;
+            CurrHp = MaxHp;
+            IsAlive = true;
+        }
+    }
+
     void Start()
     {
         IsAlive = true;
@@ -70,7 +84,7 @@ public class PlayerClass : MonoBehaviour
         void Update()
         {
             var hero = GetComponent<PlayerClass>();
-            if (hero.CurrHp <= 0)
+            if (hero.CurrHp <= 0 && hero.IsAlive)
             {
                 hero.Die();
             }
