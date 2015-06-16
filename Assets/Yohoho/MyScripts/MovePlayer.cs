@@ -24,7 +24,7 @@ public class MovePlayer : MonoBehaviour
     public float a_WalkSpeed = 2;
     //public Camera camera;
 
-    private bool walk;
+    public bool walk;
 
     private void Start()
     {
@@ -76,7 +76,7 @@ public class MovePlayer : MonoBehaviour
         {
             CalculateAngle(target);
             if (angleToTarget > 3)
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dir), rotationSpeed * UnityEngine.Time.deltaTime);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dir), rotationSpeed * UnityEngine.Time.deltaTime * 4f);
         }
     }
 

@@ -17,4 +17,12 @@ public class Types : MonoBehaviour
         JoraTwo
     }
 
+    public enum TypeOnTarget
+    {
+        Target,
+        Area,
+        Self,
+        Point
+    }
+
 }

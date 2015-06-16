@@ -26,14 +26,14 @@ public class PlayerClass : MonoBehaviour
     public string Name;
 
     //PURGATORY!
-    public Vector3 _purgatory = new Vector3(1000, 1000, 1000);
+    public Vector3 Purgatory = new Vector3(1000, 1000, 1000);
 
     //CABOOM
     public GameObject CABOOM; 
 
     void OnEnable()
     {
-        Debug.Log("PURGATORY HERE - " + _purgatory);
+        Debug.Log("PURGATORY HERE - " + Purgatory);
     }
 
     void OnDisable()
@@ -48,7 +48,7 @@ public class PlayerClass : MonoBehaviour
        Debug.Log(hero.name + " DIED");             //You died lol
        hero.IsAlive = false;                       //Yeap, you rly died
        Instantiate(CABOOM, gameObject.transform.position, gameObject.transform.rotation);
-       gameObject.transform.position = _purgatory; //GO TO PURGATORY, NIGGER!
+       gameObject.transform.position = Purgatory; //GO TO PURGATORY, NIGGER!
        
     }
 
