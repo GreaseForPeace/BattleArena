@@ -6,6 +6,7 @@ public class PlayerClass : MonoBehaviour
 {
 
     //Integer parameters
+    public int PlayerId;
     public int CurrHp;      //Current Heal Points of player;
     public int CurrMp;      //Current Mana Points of player;
     public int MaxHp;       //Maximum Heal Points of player;

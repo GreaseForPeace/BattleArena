@@ -22,7 +22,7 @@ public class JoraSecondSkillTrigger : MonoBehaviour
         Debug.Log("Эта ересь попалась в гениальную ловушку творца - " + Si.gameObject.name);
 
         //Проверка: является ли находящийся объект в тригере героем и не Георгием
-        if (Si.gameObject.GetComponent<PlayerClass>().enabled)
+        if (Si.gameObject.GetComponent<PlayerClass>() && Si.gameObject.GetComponent<PlayerClass>().Name != "Jora")
         {
             //Отключение передвижения врага, во избежании ереси
             if (Si.gameObject.GetComponent<MovePlayer>().enabled)

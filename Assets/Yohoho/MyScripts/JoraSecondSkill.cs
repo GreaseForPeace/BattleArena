@@ -21,8 +21,7 @@ public class JoraSecondSkill : BasicSkill
 	    if (Input.GetKeyDown(KeyCode.A))
 	    {
             Instantiate(Trigger, gameObject.transform.position, gameObject.transform.rotation); // Само создание сферы
-	        gameObject.GetComponent<PlayerClass>().enabled = false;
-	        gameObject.GetComponent<MovePlayer>().enabled = false;
+	      //  gameObject.GetComponent<MovePlayer>().enabled = false;
 	        _boolka = true;
 	    }
 	    if (_boolka)
@@ -31,8 +30,7 @@ public class JoraSecondSkill : BasicSkill
 	        if (Timer <= 0)
 	        {
                 Destroy(GameObject.Find("Trigger(Clone)"));
-                gameObject.GetComponent<PlayerClass>().enabled = true;
-                gameObject.GetComponent<MovePlayer>().enabled = true;
+             //   gameObject.GetComponent<MovePlayer>().enabled = true;
 	            _boolka = false;
 	        }
 	    }
