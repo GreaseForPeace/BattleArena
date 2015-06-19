@@ -120,7 +120,7 @@ public class MainMenuVik : MonoBehaviour
         GUILayout.BeginArea(new Rect((Screen.width - 400) / 2, (Screen.height - 300) / 2, 400, 300));
 
         GUILayout.Label("Connecting to Photon server.");
-        GUILayout.Label("Hint: This demo uses a settings file and logs the server address to the console.");
+     
 
         GUILayout.EndArea();
     }
