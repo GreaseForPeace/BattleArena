@@ -17,7 +17,7 @@ public class EventManager : MonoBehaviour
             var hero = GetComponentInChildren<PlayerClass>();
             hero.CurrHp -= hero.Damage;
             Debug.Log("Hero - " + hero.Name + " HP - " + hero.CurrHp);
-            Debug.Log("PURGATORY HERE - " + hero._purgatory);
+            Debug.Log("PURGATORY HERE - " + hero.Purgatory);
         }
 
         if (GUI.Button(new Rect(Screen.width / 3 - 50, 20, 100, 30), "Respawn"))
