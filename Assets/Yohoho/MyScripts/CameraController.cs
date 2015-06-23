@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-        transform.position = new Vector3(target.position.x, transform.position.y + CameraPosition, target.position.z -  6f);
+        transform.position = new Vector3(target.position.x, target.position.y + CameraPosition, target.position.z -  6f);
 	}
 	
 	// Update is called once per frame
@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
 	{
         if (Input.GetKeyDown("f1"))
         {
-            transform.position = new Vector3(target.position.x, transform.position.y + CameraPosition, target.position.z - 6f);
+            transform.position = new Vector3(target.position.x, target.position.y + CameraPosition, target.position.z - 6f);
         }
 	    CameraHeightPosition();
         CameraWidthPosition();

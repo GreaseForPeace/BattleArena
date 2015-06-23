@@ -47,7 +47,7 @@ public class JoraFirstSkill : BasicSkill {
             transform.LookAt(new Vector3(lookDirection.x, transform.position.y, lookDirection.z));
             _workPlease = true;
             jorakl = gameObject.GetComponent<MovePlayer>();
-            if (jorakl.walk)
+            if (jorakl.enabled)
             {
                 jorakl.enabled = false;
             }
