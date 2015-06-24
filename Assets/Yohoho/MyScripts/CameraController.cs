@@ -9,11 +9,14 @@ public class CameraController : MonoBehaviour
     public int CameraZoomMax;       //Максимальный зум
     public int CameraZoomMin;       //Минимальный зум
     public float CameraSpeed;       //Скорость камеры
+  //  public Collider targetС;
     public Transform target;
     private RaycastHit _hit;        //Точка попадания луча
 
+  //  new public Camera camera;
 
 
+    
 	// Use this for initialization
 	void Start () {
        // 
