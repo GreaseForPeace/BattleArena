@@ -56,7 +56,7 @@ public class MovePlayer : MonoBehaviour
                             Debug.Log(hero.Name + " - " + hero.CurrHp);
                             Debug.Log("JoraTwo hp - " + enemy.CurrHp);
                         }
-                        
+
                     };
                 }
                 else                                                        //Ложная тревога
@@ -68,11 +68,7 @@ public class MovePlayer : MonoBehaviour
         }
         LookAtThis();                                                       //Смотри
         MoveTo(hero.AttakRange);                                                           //и беги
-        if(Input.GetKeyDown("2"){
-            
-          animation.Play(a_Death);
-        }
-
+    }  
     private void CalculateAngle(Vector3 temp)
     {
         dir = new Vector3(temp.x, transform.position.y, temp.z) - transform.position;
