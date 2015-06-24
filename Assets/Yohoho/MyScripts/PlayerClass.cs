@@ -16,6 +16,7 @@ public class PlayerClass : MonoBehaviour
     public int Damage;      //Hero damage from hand;
     public int MoveSpeed;   //Hero moving speed
     public int TeamNumb;    //Number of player team
+    public float AttakRange;  //Range of players attack
 
     //Boolean parameters
     public bool IsAlive;    //Show alive on died player
@@ -55,7 +56,7 @@ public class PlayerClass : MonoBehaviour
 
     public void Attack(PlayerClass enemy)    //Calling when hero deal damage to enemy from hand
     {
-        if (enemy.IsAlive && IsAlive)
+        if (enemy.IsAlive && IsAlive && enemy.IsAlive)
         {
             DealDamage(Damage, Types.TypesOfDamage.One, enemy);
         }

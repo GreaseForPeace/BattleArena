@@ -17,11 +17,13 @@ public class MovePlayer : MonoBehaviour
     private Vector3 dir;
     private Vector3 target = new Vector3();
     private Vector3 lastTarget = new Vector3();
+    private PlayerClass hero;
 
     public AnimationClip a_Idle;
     public float a_IdleSpeed = 1;
     public AnimationClip a_Walk;
     public float a_WalkSpeed = 2;
+    public AnimationClip a_Death;
     //public Camera camera;
 
     public bool walk;
@@ -31,6 +33,7 @@ public class MovePlayer : MonoBehaviour
         animation[a_Idle.name].speed = a_IdleSpeed;
         animation[a_Walk.name].speed = a_WalkSpeed;
         animation.CrossFade(a_Idle.name);
+        hero = gameObject.GetComponent<PlayerClass>();
     }
 
     private void Update()
@@ -44,13 +47,16 @@ public class MovePlayer : MonoBehaviour
                 if (hit.collider.GetComponent<PlayerClass>())               //Проверка цели
                 {
                     var enemy = hit.collider.GetComponent<PlayerClass>();   //Враг обнаружен
-                    var hero = GetComponent<PlayerClass>();
                     if (enemy.TeamNumb != hero.TeamNumb)
                     {
                         Debug.Log("It's fucking enemy " + enemy.Name);
-                        hero.Attack(enemy);
-                        Debug.Log(hero.Name + " - " + hero.CurrHp);
-                        Debug.Log("JoraTwo hp - " + enemy.CurrHp);
+                        if (hero.AttakRange >= (target - hero.gameObject.transform.position).magnitude)
+                        {
+                            hero.Attack(enemy);
+                            Debug.Log(hero.Name + " - " + hero.CurrHp);
+                            Debug.Log("JoraTwo hp - " + enemy.CurrHp);
+                        }
+                        
                     };
                 }
                 else                                                        //Ложная тревога
@@ -61,8 +67,11 @@ public class MovePlayer : MonoBehaviour
             }
         }
         LookAtThis();                                                       //Смотри
-        MoveTo();                                                           //и беги
-    }
+        MoveTo(hero.AttakRange);                                                           //и беги
+        if(Input.GetKeyDown("2"){
+            
+          animation.Play(a_Death);
+        }
 
     private void CalculateAngle(Vector3 temp)
     {
@@ -80,11 +89,11 @@ public class MovePlayer : MonoBehaviour
         }
     }
 
-    private void MoveTo()
+    private void MoveTo(float attackRange)
     {
         if (target != lastTarget)
         {
-            if ((transform.position - target).sqrMagnitude > heightPlayer + 0.1f)
+            if ((transform.position - target).sqrMagnitude > heightPlayer + attackRange)
             {
                 if (!walk)
                 {
