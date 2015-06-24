@@ -31,16 +31,16 @@ public class PlayerClass : MonoBehaviour
     public Vector3 Purgatory = new Vector3(1000, 1000, 1000);
 
     //CABOOM
-    public GameObject CABOOM; 
+    public GameObject CABOOM;
 
     void OnEnable()
     {
         Debug.Log("PURGATORY HERE - " + Purgatory);
+        
     }
 
     void OnDisable()
     {
-     
     }
 
        //Methods

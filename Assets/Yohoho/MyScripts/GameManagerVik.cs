@@ -6,6 +6,7 @@ public class GameManagerVik : Photon.MonoBehaviour {
     // this is a object name (must be in any Resources folder) of the prefab to spawn as player avatar.
     // read the documentation for info how to spawn dynamically loaded game objects at runtime (not using Resources folders)
     public string playerPrefabName = "Charprefab";
+    public Canvas FUUUUUCK;
 
     void OnJoinedRoom()
     {
@@ -38,6 +39,10 @@ public class GameManagerVik : Photon.MonoBehaviour {
 
         // Spawn our local player
         PhotonNetwork.Instantiate(this.playerPrefabName, transform.position, Quaternion.identity, 0, objs);
+        GameObject fuckingCam = GameObject.Find("Camera");
+        CameraController fuckingCamController = fuckingCam.gameObject.GetComponent<CameraController>();
+        fuckingCamController.target = transform;
+        fuckingCamController.DoIT();
     }
 
     void OnGUI()

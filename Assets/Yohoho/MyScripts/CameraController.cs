@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-        transform.position = new Vector3(target.position.x, target.position.y + CameraPosition, target.position.z -  6f);
+       // 
 	}
 	
 	// Update is called once per frame
@@ -81,5 +81,10 @@ public class CameraController : MonoBehaviour
         {
             transform.position += new Vector3(0, 0, CameraSpeed);
         }
+    }
+
+    public void DoIT()
+    {
+        transform.position = new Vector3(target.position.x, target.position.y + CameraPosition, target.position.z - 6f);
     }
 }
