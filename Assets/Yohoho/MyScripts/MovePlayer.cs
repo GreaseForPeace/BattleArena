@@ -5,8 +5,9 @@
 /// </summary>
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class MovePlayer : MonoBehaviour
+public class MovePlayer : Photon.MonoBehaviour
 {
     
     public float stopStart = 1.5f, speed = 5f, rotationSpeed = 100f, heightPlayer = 1f;
@@ -38,36 +39,39 @@ public class MovePlayer : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))                               //ПКМ
-        {
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);        //Цель обнаружена
-            if (Physics.Raycast(ray, out hit, 10000.0f))                    //ОГОНЬ!
+     //   if (PhotonView.isMine)
+      //  {
+            if (Input.GetKeyDown(KeyCode.Mouse1))                               //ПКМ
             {
-                target = hit.point;                                         //Цель обнаружена
-                if (hit.collider.GetComponent<PlayerClass>())               //Проверка цели
+                ray = Camera.main.ScreenPointToRay(Input.mousePosition);        //Цель обнаружена
+                if (Physics.Raycast(ray, out hit, 10000.0f))                    //ОГОНЬ!
                 {
-                    var enemy = hit.collider.GetComponent<PlayerClass>();   //Враг обнаружен
-                    if (enemy.TeamNumb != hero.TeamNumb)
+                    target = hit.point;                                         //Цель обнаружена
+                    if (hit.collider.GetComponent<PlayerClass>())               //Проверка цели
                     {
+                        var enemy = hit.collider.GetComponent<PlayerClass>();   //Враг обнаружен
+                        // if (enemy.TeamNumb != hero.TeamNumb)
+                        //{
                         Debug.Log("It's fucking enemy " + enemy.Name);
-                        if (hero.AttakRange >= (target - hero.gameObject.transform.position).magnitude)
-                        {
+                       // if (hero.AttakRange >= (target - hero.gameObject.transform.position).magnitude)
+                       // {
                             hero.Attack(enemy);
                             Debug.Log(hero.Name + " - " + hero.CurrHp);
                             Debug.Log("JoraTwo hp - " + enemy.CurrHp);
-                        }
+                       // }
 
-                    };
-                }
-                else                                                        //Ложная тревога
-                {
-                    var enemy = hit.collider.gameObject.name;
-                    Debug.Log("You clicked on " + enemy);
+                        // };
+                    }
+                    else                                                        //Ложная тревога
+                    {
+                        var enemy = hit.collider.gameObject.name;
+                        Debug.Log("You clicked on " + enemy);
+                    }
                 }
             }
-        }
-        LookAtThis();                                                       //Смотри
-        MoveTo(hero.AttakRange);                                                           //и беги
+            LookAtThis();                                                       //Смотри
+            MoveTo(hero.AttakRange);                                                           //и беги
+       // }
     }  
     private void CalculateAngle(Vector3 temp)
     {

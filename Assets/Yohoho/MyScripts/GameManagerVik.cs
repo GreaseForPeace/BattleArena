@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
+
 
 public class GameManagerVik : Photon.MonoBehaviour {
 
@@ -7,6 +9,9 @@ public class GameManagerVik : Photon.MonoBehaviour {
     // read the documentation for info how to spawn dynamically loaded game objects at runtime (not using Resources folders)
     public string playerPrefabName = "Charprefab";
     public Canvas FUUUUUCK;
+    public Slider HealthBar;
+    public Slider ManaBar;
+    public Camera Minimap;
 
     void OnJoinedRoom()
     {
@@ -38,11 +43,26 @@ public class GameManagerVik : Photon.MonoBehaviour {
         objs[0] = enabledRenderers;
 
         // Spawn our local player
-        PhotonNetwork.Instantiate(this.playerPrefabName, transform.position, Quaternion.identity, 0, objs);
+        var a = PhotonNetwork.Instantiate(this.playerPrefabName, transform.position, Quaternion.identity, 0);
+        var player = a.GetComponent<PlayerClass>();
         GameObject fuckingCam = GameObject.Find("Camera");
         CameraController fuckingCamController = fuckingCam.gameObject.GetComponent<CameraController>();
-        fuckingCamController.target = transform;
+        fuckingCamController.target = a.transform;
         fuckingCamController.DoIT();
+        Debug.Log("krgdjgkfjg " + FUUUUUCK.active);
+        if (!FUUUUUCK.active)
+        {
+            FUUUUUCK.active = true;
+        }
+        if (!Minimap.active) {
+
+            Minimap.active = true;
+        }
+        HealthBar.maxValue = player.MaxHp;
+        HealthBar.value = player.CurrHp;
+        ManaBar.maxValue = player.MaxMp;
+        ManaBar.value = player.CurrMp;
+        
     }
 
     void OnGUI()
