@@ -47,8 +47,8 @@ public class MovePlayer : MonoBehaviour
                 if (hit.collider.GetComponent<PlayerClass>())               //Проверка цели
                 {
                     var enemy = hit.collider.GetComponent<PlayerClass>();   //Враг обнаружен
-                    if (enemy.TeamNumb != hero.TeamNumb)
-                    {
+                   // if (enemy.TeamNumb != hero.TeamNumb)
+                    //{
                         Debug.Log("It's fucking enemy " + enemy.Name);
                         if (hero.AttakRange >= (target - hero.gameObject.transform.position).magnitude)
                         {
@@ -57,7 +57,7 @@ public class MovePlayer : MonoBehaviour
                             Debug.Log("JoraTwo hp - " + enemy.CurrHp);
                         }
 
-                    };
+                   // };
                 }
                 else                                                        //Ложная тревога
                 {
