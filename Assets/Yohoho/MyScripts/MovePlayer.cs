@@ -32,7 +32,7 @@ public class MovePlayer : Photon.MonoBehaviour
     private void Start()
     {
         animation[a_Idle.name].speed = a_IdleSpeed;
-        animation[a_Walk.name].speed = a_WalkSpeed;
+//        animation[a_Walk.name].speed = a_WalkSpeed;
         animation.CrossFade(a_Idle.name);
         hero = gameObject.GetComponent<PlayerClass>();
     }
@@ -41,53 +41,38 @@ public class MovePlayer : Photon.MonoBehaviour
     {
      //   if (PhotonView.isMine)
       //  {
+        Debug.Log("Это должно выполнятся каждый кадр");
             if (Input.GetKeyDown(KeyCode.Mouse1))                               //ПКМ
             {
                 ray = Camera.main.ScreenPointToRay(Input.mousePosition);        //Цель обнаружена
                 if (Physics.Raycast(ray, out hit, 10000.0f))                    //ОГОНЬ!
                 {
-<<<<<<< HEAD
-                    var enemy = hit.collider.GetComponent<PlayerClass>();   //Враг обнаружен
-                   // if (enemy.TeamNumb != hero.TeamNumb)
-                    //{
-=======
                     target = hit.point;                                         //Цель обнаружена
                     if (hit.collider.GetComponent<PlayerClass>())               //Проверка цели
                     {
                         var enemy = hit.collider.GetComponent<PlayerClass>();   //Враг обнаружен
                         // if (enemy.TeamNumb != hero.TeamNumb)
                         //{
->>>>>>> origin/develop
                         Debug.Log("It's fucking enemy " + enemy.Name);
                        // if (hero.AttakRange >= (target - hero.gameObject.transform.position).magnitude)
                        // {
                             hero.Attack(enemy);
                             Debug.Log(hero.Name + " - " + hero.CurrHp);
                             Debug.Log("JoraTwo hp - " + enemy.CurrHp);
-                       // }
+                     }
 
-<<<<<<< HEAD
-                   // };
-                }
-                else                                                        //Ложная тревога
-                {
-                    var enemy = hit.collider.gameObject.name;
-                    Debug.Log("You clicked on " + enemy);
-=======
-                        // };
-                    }
                     else                                                        //Ложная тревога
                     {
                         var enemy = hit.collider.gameObject.name;
                         Debug.Log("You clicked on " + enemy);
                     }
->>>>>>> origin/develop
                 }
-            }
+                                                          
+        }
             LookAtThis();                                                       //Смотри
-            MoveTo(hero.AttakRange);                                                           //и беги
-       // }
-    }  
+            MoveTo();                                            //и беги
+    }
+  
     private void CalculateAngle(Vector3 temp)
     {
         dir = new Vector3(temp.x, transform.position.y, temp.z) - transform.position;
@@ -104,11 +89,11 @@ public class MovePlayer : Photon.MonoBehaviour
         }
     }
 
-    private void MoveTo(float attackRange)
+    private void MoveTo()
     {
         if (target != lastTarget)
         {
-            if ((transform.position - target).sqrMagnitude > heightPlayer + attackRange)
+            if ((transform.position - target).sqrMagnitude > heightPlayer + 0.1f)
             {
                 if (!walk)
                 {

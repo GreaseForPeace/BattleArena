@@ -13,6 +13,7 @@ public class JoraFirstSkill : BasicSkill {
     public int Range;
     public float Speed;
     private MovePlayer jorakl;
+    public AnimationClip jump;
 
 	// Use this for initialization
 	void Start ()
@@ -29,7 +30,7 @@ public class JoraFirstSkill : BasicSkill {
 	// Update is called once per frame
 	void Update () {
 	
-    if (Input.GetKeyDown(KeyCode.Mouse2) && _workPlease == false)       //Если нажато колесико мыши  и персонаж не в прыжке
+    if (Input.GetKeyDown("1") && _workPlease == false)       //Если нажато колесико мыши  и персонаж не в прыжке
     {
         _stopItPlease = gameObject.transform.position;                //Запоминаем позицию персонажа перед началом движения
         _ray = Camera.main.ScreenPointToRay(Input.mousePosition);     //Пускаем луч в позицию мыши
@@ -60,6 +61,7 @@ public class JoraFirstSkill : BasicSkill {
     IEnumerator Jump()
     {
         Debug.Log("Жора летит вверх");
+        animation.Play(jump.name);
         while ((_aveng - gameObject.transform.position).magnitude > 1f) // Если расстояние больше чем 1  Жора двигается
         {
             gameObject.transform.Translate((_aveng - gameObject.transform.position) * Time.deltaTime * Speed);
@@ -75,5 +77,6 @@ public class JoraFirstSkill : BasicSkill {
         Debug.Log("Жора на месте");
         _workPlease = false;
         if(!jorakl.enabled) {jorakl.enabled = true;}
+        animation.Play(gameObject.GetComponent<MovePlayer>().a_Idle.name);
     }
 }
