@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
+
 public class GameManagerVik : Photon.MonoBehaviour {
 
     // this is a object name (must be in any Resources folder) of the prefab to spawn as player avatar.
@@ -42,7 +43,11 @@ public class GameManagerVik : Photon.MonoBehaviour {
         objs[0] = enabledRenderers;
 
         // Spawn our local player
+<<<<<<< HEAD
         var a = PhotonNetwork.Instantiate(this.playerPrefabName, transform.position, Quaternion.identity, 0, objs);
+=======
+        var a = PhotonNetwork.Instantiate(this.playerPrefabName, transform.position, Quaternion.identity, 0);
+>>>>>>> origin/develop
         var player = a.GetComponent<PlayerClass>();
         GameObject fuckingCam = GameObject.Find("Camera");
         CameraController fuckingCamController = fuckingCam.gameObject.GetComponent<CameraController>();
