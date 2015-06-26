@@ -6,12 +6,14 @@ public class JoraSecondSkillTrigger : MonoBehaviour
 {
     public float Speed;
     private Vector3 _triggerPos;
+    public GameObject Effect;
 
     void Start()
     {
         //Запоминаем центр появления, хотя это ведь не особо нужно, ведь триггер не двигается
         //но почему бы и нет?
-        _triggerPos = gameObject.transform.position;      
+        _triggerPos = gameObject.transform.position;
+        
     }
 	void Update () {
 	
@@ -31,7 +33,7 @@ public class JoraSecondSkillTrigger : MonoBehaviour
                 Debug.Log(Si.gameObject.GetComponent<PlayerClass>().Name + " не может двигаться");
             }
             //В идеале, оно должно двигать жертву к центру сферы, но об этом потом
-            if ((_triggerPos - Si.gameObject.transform.position).magnitude > 1)   
+            if ((_triggerPos - Si.gameObject.transform.position).magnitude > 2)   
             {
                 Debug.Log("Враг по имени" + Si.gameObject.GetComponent<PlayerClass>().Name + " находится на точке " + Si.gameObject.transform.position );
                 Debug.Log("Центр сферы там - " + gameObject.transform.position);

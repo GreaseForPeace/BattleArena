@@ -24,7 +24,6 @@ public class MovePlayer : Photon.MonoBehaviour
     public float a_IdleSpeed = 1;
     public AnimationClip a_Walk;
     public float a_WalkSpeed = 2;
-    public AnimationClip a_Death;
     //public Camera camera;
 
     public bool walk;
@@ -32,7 +31,7 @@ public class MovePlayer : Photon.MonoBehaviour
     private void Start()
     {
         animation[a_Idle.name].speed = a_IdleSpeed;
-//        animation[a_Walk.name].speed = a_WalkSpeed;
+        animation[a_Walk.name].speed = a_WalkSpeed;
         animation.CrossFade(a_Idle.name);
         hero = gameObject.GetComponent<PlayerClass>();
     }

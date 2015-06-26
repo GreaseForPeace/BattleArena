@@ -14,6 +14,7 @@ public class JoraFirstSkill : BasicSkill {
     public float Speed;
     private MovePlayer jorakl;
     public AnimationClip jump;
+    public GameObject Boom;
 
 	// Use this for initialization
 	void Start ()
@@ -48,10 +49,12 @@ public class JoraFirstSkill : BasicSkill {
             transform.LookAt(new Vector3(lookDirection.x, transform.position.y, lookDirection.z));
             _workPlease = true;
             jorakl = gameObject.GetComponent<MovePlayer>();
-            if (jorakl.enabled)
+            if (jorakl.enabled == true)
             {
                 jorakl.enabled = false;
             }
+            Vector3 dir = new Vector3(_hit.point.x - transform.position.x, transform.position.y, _hit.point.z - transform.position.z);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dir),  4f);
             StartCoroutine("Jump");
 
         }
@@ -61,6 +64,7 @@ public class JoraFirstSkill : BasicSkill {
     IEnumerator Jump()
     {
         Debug.Log("Жора летит вверх");
+        
         animation.Play(jump.name);
         while ((_aveng - gameObject.transform.position).magnitude > 1f) // Если расстояние больше чем 1  Жора двигается
         {
@@ -74,6 +78,7 @@ public class JoraFirstSkill : BasicSkill {
             gameObject.transform.Translate((_hit.point - gameObject.transform.position) * Time.deltaTime * Speed);
             yield return null;
         }
+        Instantiate(Boom, gameObject.transform.position, gameObject.transform.rotation);
         Debug.Log("Жора на месте");
         _workPlease = false;
         if(!jorakl.enabled) {jorakl.enabled = true;}
