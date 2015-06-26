@@ -28,8 +28,7 @@ public class JoraFifthSkill : BasicSkill
             if (Physics.Raycast(ray, out hit, 10000.0f))                    //ОГОНЬ!
             {
               //  animation.Play(StrongArm.name);
-                Quaternion qua;
-                var bullet = (GameObject)Instantiate(Trigger, gameObject.transform.position, gameObject.transform.rotation + qua); // Само создание Снаряда
+                var bullet = (GameObject)Instantiate(Trigger, gameObject.transform.position, Quaternion.identity); // Само создание Снаряда
                  bullet.rigidbody.AddForce(transform.forward * BulletForce);
                 _isActive = true;
             }
